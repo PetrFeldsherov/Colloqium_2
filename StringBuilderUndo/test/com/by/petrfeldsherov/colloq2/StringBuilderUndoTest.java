@@ -8,8 +8,7 @@ import org.junit.Test;
 
 public class StringBuilderUndoTest {
 
-    private static final String INITIAL_STRING = "string to test"; // @ initialize two buffers in before and check that
-							   // results of operations are equal
+    private static final String INITIAL_STRING = "string to test";
     private static final int INITIAL_LENGTH = INITIAL_STRING.length();
     private static StringBuilder sb;
     private static StringBuilderUndo sbu;

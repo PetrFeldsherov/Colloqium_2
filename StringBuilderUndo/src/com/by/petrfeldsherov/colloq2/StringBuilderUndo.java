@@ -5,9 +5,9 @@ import java.util.Stack;
 class StringBuilderUndo {
 
     private StringBuilder stringBuilder; // delegate
-    private Stack<Action> actions = new Stack<>();
+    private Stack<UndoAction> actions = new Stack<>();
 
-    private class DeleteAction implements Action {
+    private class DeleteAction implements UndoAction {
 	private int size;
 
 	public DeleteAction(int size) {
@@ -35,23 +35,23 @@ class StringBuilderUndo {
 
     public StringBuilderUndo reverse() {
 	stringBuilder.reverse();
-	Action action = new Action() {
+	UndoAction undoAction = new UndoAction() {
 	    public void undo() {
 		stringBuilder.reverse();
 	    }
 	};
-	actions.add(action);
+	actions.add(undoAction);
 	return this;
     }
 
     public StringBuilderUndo append(String str) {
 	stringBuilder.append(str);
-	Action action = new Action() {
+	UndoAction undoAction = new UndoAction() {
 	    public void undo() {
 		stringBuilder.delete(stringBuilder.length() - str.length(), stringBuilder.length());
 	    }
 	};
-	actions.add(action);
+	actions.add(undoAction);
 	return this;
     }
 
